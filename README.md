@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WDD430 Portfolio
 
-## Getting Started
+A portfolio site built with Next.js (App Router), TypeScript and Tailwind CSS for the WDD430 W01 assignment.
 
-First, run the development server:
+## Live Site
 
-```bash
+https://wdd430-portfolio-delta-one.vercel.app/
+
+## Pages
+
+- `/`: Home, with a list of my projects
+- `/about`: About me, with my skills, learning timeline and contact info
+- `/api/hello`: A simple API route that returns JSON
+
+## Custom Components
+
+- `SkillCard.tsx`: shows a category of my technical skills as a list of tags
+- `TimelineItem.tsx`: shows one milestone in my learning journey
+- `ContactCard.tsx`: shows my email, GitHub and LinkedIn links
+
+## Run Locally
+
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Then open http://localhost:3000.
