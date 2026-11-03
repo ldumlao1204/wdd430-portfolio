@@ -7,8 +7,8 @@ export default function Header() {
                 <div id="header-title" className="text-2xl font-bold">Leilany Dumlao</div>
                 <nav>
                     <ul className="flex gap-6">
-                        <li><Link href="/">Home</Link></li>
-                        <li><Link href="/about">About</Link></li>
+                        <li><Link href="/" className="hover:underline hover:text-gray-300 underline-offset-4">Home</Link></li>
+                        <li><Link href="/about" className="hover:underline hover:text-gray-300 underline-offset-4">About</Link></li>
                     </ul>
                 </nav>
             </div>
