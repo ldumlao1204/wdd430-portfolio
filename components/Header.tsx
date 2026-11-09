@@ -5,10 +5,11 @@ export default function Header() {
         <header className="bg-gray-800 text-white py-4 shadow-md">
             <div className="container mx-auto px-4 flex justify-between items-center">
                 <div id="header-title" className="text-2xl font-bold">Leilany Dumlao</div>
-                <nav>
+                <nav aria-label="Main">
                     <ul className="flex gap-6">
-                        <li><Link href="/" className="hover:underline hover:text-gray-300 underline-offset-4">Home</Link></li>
                         <li><Link href="/about" className="hover:underline hover:text-gray-300 underline-offset-4">About</Link></li>
+                        <li><Link href="/" className="hover:underline hover:text-gray-300 underline-offset-4">Home</Link></li>
+                        <li><Link href="/projects" className="hover:underline hover:text-gray-300 underline-offset-4">Projects</Link></li>
                     </ul>
                 </nav>
             </div>
