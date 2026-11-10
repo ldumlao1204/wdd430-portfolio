@@ -15,7 +15,7 @@ export default function ProjectCard({ title, description, technologies, link }: 
             </p>
             {link && (
                 <p className="mt-2">
-                    <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">View Project</a>
+                    <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">View Project</a>
                 </p>
             )}
         </article>
