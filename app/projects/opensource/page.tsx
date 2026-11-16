@@ -1,8 +1,8 @@
 import ProjectList from '@/components/ProjectList';
 import { getProjects } from '@/lib/projects-db'; // Step 3: data comes from the database module
 
-export default async function OpenSourceProjectsPage() {  // Step 2: async Server Component
-    const projects = await getProjects('opensource');  // Step 2: "fetch directly in the component"
+export default async function OpenSourceProjectsPage() { // Step 2: async Server Component
+    const projects = await getProjects('opensource'); // Step 2: "fetch directly in the component"
 
     return (
         <section>
