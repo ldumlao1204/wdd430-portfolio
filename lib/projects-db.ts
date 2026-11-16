@@ -16,7 +16,7 @@ export async function getProjects(type?: string | null): Promise<Project[]> {
         `;
         return rows;
     }
-    const { rows } = await sql<Project>`SELECT * FROM projects ORDER BY id`;
+    const { rows } = await sql<Project>`SELECT * FROM projects ORDER BY id`; //Step 3: live database query
     return rows;
 }
 
