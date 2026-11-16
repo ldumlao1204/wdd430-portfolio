@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 export default function ProjectsLayout({ children }: LayoutProps<'/projects'>) {
     return (
@@ -10,7 +11,9 @@ export default function ProjectsLayout({ children }: LayoutProps<'/projects'>) {
                     <li><Link href="/projects/school" className="text-blue-700 hover:underline underline-offset-4">School</Link></li>
                 </ul>
             </nav>
-            {children}
+            <Suspense fallback={<p role="status" className="text-gray-600">Loading projects...</p>}>
+                {children}
+            </Suspense>
         </main>
     );
 }
