@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getProjectById } from '@/lib/projects-db';
 import { updateProject } from '@/lib/actions';
 
@@ -14,12 +15,7 @@ export default async function EditProjectPage(props: PageProps<'/projects/[id]/e
     const project = Number.isInteger(id) && id > 0 ? await getProjectById(id) : null;
 
     if (!project) {
-        return (
-            <section>
-                <h1 className="text-3xl font-bold mb-4">Project not found</h1>
-                <Link href="/projects" className="text-blue-700 hover:underline underline-offset-4">Back to Projects</Link>
-            </section>
-        );
+        notFound();
     }
 
     // 3. Pre-fill the id, so the action knows WHICH project to update

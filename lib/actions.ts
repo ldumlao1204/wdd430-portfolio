@@ -42,13 +42,18 @@ export async function createProject(formData: FormData) {
     const { title, description, type, technologies: technologiesText, link } = parsed.data;
     const technologies = cleanTechnologies(technologiesText);
 
-    // 3. Save the new project (Postgres turns the text into a TEXT[] array)
-    await sql`
-        INSERT INTO projects (title, description, type, technologies, link)
-        VALUES (${title}, ${description}, ${type}, string_to_array(${technologies}, ','), ${link || null})
-    `;
+    // 3. Save the new project (only the database call goes inside try)
+    try {
+        await sql`
+            INSERT INTO projects (title, description, type, technologies, link)
+            VALUES (${title}, ${description}, ${type}, string_to_array(${technologies}, ','), ${link || null})
+        `;
+    } catch (error) {
+        console.error('Database error in createProject:', error);
+        throw new Error('Failed to create project. Please try again later.');
+    }
 
-    // 4. Refresh the projects page, then send the user back to it
+    // 4. Outside try: refresh the projects page, then send the user back to it
     revalidatePath('/projects');
     redirect('/projects');
 }
@@ -76,18 +81,23 @@ export async function updateProject(id: number, formData: FormData) {
     const { title, description, type, technologies: technologiesText, link } = parsed.data;
     const technologies = cleanTechnologies(technologiesText);
 
-    // 3. Change ONLY this one project (WHERE id = ...)
-    await sql`
-        UPDATE projects
-        SET title = ${title},
-            description = ${description},
-            type = ${type},
-            technologies = string_to_array(${technologies}, ','),
-            link = ${link || null}
-        WHERE id = ${id}
-    `;
+    // 3. Change ONLY this one project (only the database call goes inside try)
+    try {
+        await sql`
+            UPDATE projects
+            SET title = ${title},
+                description = ${description},
+                type = ${type},
+                technologies = string_to_array(${technologies}, ','),
+                link = ${link || null}
+            WHERE id = ${id}
+        `;
+    } catch (error) {
+        console.error('Database error in updateProject:', error);
+        throw new Error('Failed to update project. Please try again later.');
+    }
 
-    // 4. Refresh the projects page, then send the user back to it
+    // 4. Outside try: refresh the projects page, then send the user back to it
     revalidatePath('/projects');
     redirect('/projects');
 }
@@ -98,10 +108,14 @@ export async function deleteProject(id: number) {
         throw new Error('Invalid project id.');
     }
 
-    // 2. Remove ONLY this one project
-    await sql`DELETE FROM projects WHERE id = ${id}`;
+    // 2. Remove ONLY this one project (only the database call goes inside try)
+    try {
+        await sql`DELETE FROM projects WHERE id = ${id}`;
+    } catch (error) {
+        console.error('Database error in deleteProject:', error);
+        throw new Error('Failed to delete project. Please try again later.');
+    }
 
-    // 3. Refresh /projects AND every page under it (opensource, school)
+    // 3. Outside try: refresh /projects AND every page under it (opensource, school)
     revalidatePath('/projects', 'layout');
 }
-
