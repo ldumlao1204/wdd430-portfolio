@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ProjectList from '@/components/ProjectList';
 import ProjectSearch from '@/components/ProjectSearch';
 import Pagination from '@/components/Pagination';
@@ -22,6 +23,12 @@ export default async function ProjectsPage(props: PageProps<'/projects'>) {
             <p className="text-lg text-gray-700 mb-8">
                 Here is an overview of my work. Choose Open Source or School to see each group of projects.
             </p>
+            <Link
+                href="/projects/create"
+                className="inline-block mb-6 rounded-lg bg-blue-700 px-4 py-2 font-semibold text-white hover:bg-blue-800"
+            >
+                + Add Project
+            </Link>
             <ProjectSearch />
             {projects.length > 0 ? (
                 <ProjectList projects={projects} />
